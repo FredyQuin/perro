@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Árbol del Amor - Mes de Noviazgo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff5f5;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #e74c3c;
+            margin-bottom: 30px;
+        }
+        
+        .tree-container {
+            position: relative;
+            height: 400px;
+            margin: 40px 0;
+        }
+        
+        .tree {
+            width: 200px;
+            height: 300px;
+            background-color: #8b4513;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            clip-path: polygon(0% 100%, 20% 60%, 10% 60%, 30% 30%, 20% 30%, 40% 0%, 60% 30%, 50% 30%, 70% 60%, 60% 60%, 80% 60%, 100% 100%);
+        }
+        
+        .leaves {
+            width: 300px;
+            height: 200px;
+            background-color: #2ecc71;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .love-leaf {
+            position: absolute;
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 14px;
+            animation: fadeIn 1s;
+            white-space: nowrap;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .counter {
+            font-size: 18px;
+            margin-top: 15px;
+            color: #7f8c8d;
+        }
+        
+        .message {
+            margin-top: 30px;
+            font-style: italic;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nuestro Árbol del Amor</h1>
+        <p>Celebrando nuestro primer mes de noviazgo ❤️</p>
+        
+        <div class="tree-container">
+            <div class="leaves"></div>
+            <div class="tree"></div>
+            <!-- Las hojas de amor se agregarán aquí -->
+        </div>
+        
+        <button id="addLeaf">Añadir hoja de amor</button>
+        <div class="counter">Hojas de amor: <span id="leafCount">0</span></div>
+        
+        <div class="message">
+            Cada hoja representa un "Te amo" en nuestro primer mes juntos.
+        </div>
+    </div>
+
+    <script>
+        const addLeafBtn = document.getElementById('addLeaf');
+        const leafCount = document.getElementById('leafCount');
+        const treeContainer = document.querySelector('.tree-container');
+        let count = 0;
+        
+        addLeafBtn.addEventListener('click', function() {
+            count++;
+            leafCount.textContent = count;
+            
+            // Crear una nueva hoja de amor
+            const leaf = document.createElement('div');
+            leaf.className = 'love-leaf';
+            leaf.textContent = 'Te amo ❤️';
+            
+            // Posición aleatoria en el área del árbol
+            const x = Math.random() * 250 + 50;
+            const y = Math.random() * 150 + 100;
+            
+            leaf.style.left = `${x}px`;
+            leaf.style.top = `${y}px`;
+            
+            // Rotación aleatoria para variedad
+            const rotation = Math.random() * 30 - 15;
+            leaf.style.transform = `rotate(${rotation}deg)`;
+            
+            // Color rojo con variación aleatoria
+            const red = 200 + Math.floor(Math.random() * 55);
+            const green = Math.floor(Math.random() * 50);
+            const blue = Math.floor(Math.random() * 50);
+            leaf.style.color = `rgb(${red}, ${green}, ${blue})`;
+            
+            treeContainer.appendChild(leaf);
+            
+            // Mensaje especial cada 10 hojas
+            if (count % 10 === 0) {
+                const specialLeaf = document.createElement('div');
+                specialLeaf.className = 'love-leaf';
+                specialLeaf.textContent = 'TE AMO MUCHO ❤️❤️❤️';
+                specialLeaf.style.fontSize = '18px';
+                
+                const x = Math.random() * 250 + 50;
+                const y = Math.random() * 150 + 100;
+                
+                specialLeaf.style.left = `${x}px`;
+                specialLeaf.style.top = `${y}px`;
+                specialLeaf.style.color = '#e74c3c';
+                
+                treeContainer.appendChild(specialLeaf);
+            }
+        });
+    </script>
+</body>
+</html>
